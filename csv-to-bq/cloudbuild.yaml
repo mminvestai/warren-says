@@ -6,7 +6,7 @@ steps:
       - deploy
       - hello_world
       - --region=is-central1
-      - --source=.
+      - --source=./csv_to_bq/
       - --trigger-http
       - --runtime=python38
       - --memory=256MB
