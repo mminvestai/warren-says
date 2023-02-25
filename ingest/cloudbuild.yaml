@@ -6,7 +6,7 @@ steps:
       - deploy
       - ingest
       - --region=us-central1
-      - --source=.
+      - --source=./ingest/
       - --trigger-http
       - --runtime=python38
       - --memory=1GB
