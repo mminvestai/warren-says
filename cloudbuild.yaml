@@ -4,7 +4,7 @@ steps:
       - gcloud
       - functions
       - deploy
-      - function-ingest2
+      - ingest
       - --region=us-central1
       - --source=.
       - --trigger-http
