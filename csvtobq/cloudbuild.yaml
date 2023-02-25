@@ -4,9 +4,9 @@ steps:
       - gcloud
       - functions
       - deploy
-      - csv_to_bq
+      - csvtobq
       - --region=us-central1
-      - --source=./csv_to_bq/
+      - --source=./csvtobq/
       - --trigger-http
       - --runtime=python38
       - --memory=256MB
