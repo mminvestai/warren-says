@@ -5,7 +5,7 @@ steps:
       - functions
       - deploy
       - function-ingest2
-      - --region=.
+      - --region=us-central1
       - --source=.
       - --trigger-http
       - --runtime=python38
