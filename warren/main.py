@@ -146,6 +146,8 @@ def warren(request):
     #+MMP 19-02-23
     last_date = data['date'].max()
     predict['predict_date'] = last_date
+    predict['predict_pct'] = predict['predict']
+    predict['predict'] = predict['close_last']*(1 + predict['predict_pct'])
     #-MMP 19-02-23
 
     blob = bucket.blob(predict_filename)
