@@ -1,0 +1,19 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+      - gcloud
+      - functions
+      - deploy
+      - warren
+      - --region=us-central1
+      - --source=.
+      - --trigger-http
+      - --runtime=python38
+      - --memory=8GB
+      - --timeout=540
+      - --min-instances=0
+      - --max-instances=3000
+      - --security-level=secure-always
+      - --ingress-settings=all
+      - --no-allow-unauthenticated
+      - --service-account=warren-says@appspot.gserviceaccount.com
