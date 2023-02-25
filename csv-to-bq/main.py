@@ -1,6 +1,6 @@
 from google.cloud import bigquery #pip install google-cloud-bigquery==3.3.1
 
-def csv_to_bq(request):
+def csvtobq(request):
   client = bigquery.Client()
   job_config = bigquery.LoadJobConfig(
       #schema=[
