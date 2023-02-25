@@ -16,6 +16,7 @@ def ingest(request):
         upside = pd.read_csv(f)
 
     ticker_list = upside['ticker']
+    window = 250 #MMP 25-02-23
 
     def consolidate(df_daily, df_interval, interval):
         if df_interval.empty == True:
@@ -69,6 +70,10 @@ def ingest(request):
                 sleep(1)
             else:
                 error = 0
+        #+MMP 25-02-23
+        temp['real'] = temp[::-1]['Adj Close'].rolling(window).max()[::-1]
+        temp['realpct'] = (temp[::-1]['Adj Close'].rolling(window).max()[::-1]-temp['Adj Close'])/temp['Adj Close']
+        #-MMP 25-02-23
         df_list.append(temp)
         
         # Nasdaq Quandl Options Implied Volatility
