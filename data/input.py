@@ -18,7 +18,7 @@ def input(request):
     upside = pd.read_csv(f)
   ticker_list = upside['ticker']
   
-  blob = bucket.blob('data_poc.csv')
+  blob = bucket.blob('input_poc.csv')
   with blob.open("r") as f:
     data = pd.read_csv(f)
   max_date = data['date'].max()
