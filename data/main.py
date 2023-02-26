@@ -108,6 +108,14 @@ def data(request):
         data_temp = data_temp.append(temp)
 
   data_temp = data_temp[data_temp.date > max_date]
+  data_temp = data_temp.rename(columns={'Dividends': 'dividends'})
+  data_temp = data_temp.rename(columns={'Stock Splits': 'splits'})
+  data_temp = data_temp.rename(columns={'Open': 'open'})
+  data_temp = data_temp.rename(columns={'High': 'high'})
+  data_temp = data_temp.rename(columns={'Low': 'low'})
+  data_temp = data_temp.rename(columns={'Close': 'close'})
+  data_temp = data_temp.rename(columns={'Adj Close': 'adj_close'})
+  data_temp = data_temp.rename(columns={'Volume': 'volume'})
   
   blob = bucket.blob('input_poc.csv')
   with blob.open("w") as f:
