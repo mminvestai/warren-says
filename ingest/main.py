@@ -70,10 +70,7 @@ def ingest(request):
                 sleep(1)
             else:
                 error = 0
-        #+MMP 25-02-23
-        temp['real'] = temp[::-1]['Adj Close'].rolling(window).max()[::-1]
-        temp['real_pct'] = (temp[::-1]['Adj Close'].rolling(window).max()[::-1]-temp['Adj Close'])/temp['Adj Close']
-        #-MMP 25-02-23
+
         df_list.append(temp)
         
         # Nasdaq Quandl Options Implied Volatility
