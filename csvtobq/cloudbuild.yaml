@@ -4,14 +4,16 @@ steps:
       - gcloud
       - functions
       - deploy
-      - csvtobq
+      - data
       - --region=us-central1
-      - --source=./csvtobq/
+      - --source=./data/
       - --trigger-http
       - --runtime=python38
-      - --memory=256MB
-      - --timeout=90
+      - --memory=1GB
+      - --timeout=540
       - --min-instances=0
-      - --max-instances=1
+      - --max-instances=3000
+      - --security-level=secure-always
       - --ingress-settings=all
+      - --no-allow-unauthenticated
       - --service-account=warren-says@appspot.gserviceaccount.com
