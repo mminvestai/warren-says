@@ -106,6 +106,13 @@ def data(request):
         data_temp = temp
       else:
         data_temp = data_temp.append(temp)
+  
+  data_temp['date'] = pd.to_datetime(data_temp['date'])
+
+  try:
+    data_temp = data_temp[data_temp.date > max_date]
+  except:
+    print('first load')
 
   data_temp = data_temp[data_temp.date > max_date]
   data_temp = data_temp.rename(columns={'Dividends': 'dividends'})
