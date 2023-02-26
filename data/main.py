@@ -8,7 +8,7 @@ import csv
 from time import sleep
 from google.cloud import storage #pip install google-cloud-storage, pip install --upgrade google-cloud-storage, pip install --upgrade google-api-python-client
 
-def input(request):
+def data(request):
   window = 250
   storage_client = storage.Client()
   bucket = storage_client.bucket('raw-data_bucket')
