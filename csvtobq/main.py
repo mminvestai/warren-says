@@ -20,7 +20,7 @@ def csvtobq(request):
   #table_id = "warren-says.data.predictions"
   #uri = "gs://raw-data_bucket/predict_poc.csv"
   
-  #+MMP 2023-03-11
+  #+MMP 2023-03-11-
   if replace_flag == 1:
     job_config = bigquery.LoadJobConfig(
       write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
