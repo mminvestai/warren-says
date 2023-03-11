@@ -21,7 +21,7 @@ def data(request):
   blob = bucket.blob('input_poc.csv')
   with blob.open("r") as f:
     data = pd.read_csv(f)
-  max_date = data['date'].max()
+  #max_date = data['date'].max() #MMP 2023-03-11, adj_close is adjusted retroactively
   
   def consolidate(df_daily, df_interval, interval):
     if df_interval.empty == True:
@@ -109,12 +109,13 @@ def data(request):
   
   data_temp['date'] = pd.to_datetime(data_temp['date'])
 
-  try:
-    data_temp = data_temp[data_temp.date > max_date]
-  except:
-    print('first load')
+  #MMP 2023-03-11, adj_close is adjusted retroactively
+  #try:
+  #  data_temp = data_temp[data_temp.date > max_date]
+  #except:
+  #  print('first load')
 
-  data_temp = data_temp[data_temp.date > max_date]
+  #data_temp = data_temp[data_temp.date > max_date] #MMP 2023-03-11, adj_close is adjusted retroactively
   data_temp = data_temp.rename(columns={'Dividends': 'dividends'})
   data_temp = data_temp.rename(columns={'Stock Splits': 'splits'})
   data_temp = data_temp.rename(columns={'Open': 'open'})
