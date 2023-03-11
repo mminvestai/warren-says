@@ -143,6 +143,7 @@ def warren(request):
             predict.loc[predict['ticker'] == ticker,'mae'] = -1
             predict.loc[predict['ticker'] == ticker,'predict'] = -1
 
+    predict.loc[predict['ticker'] == ticker,'close_last'] = data_ticker['Adj Close_'+ticker].iloc[-1] #MMP 2023-03-11
     #+MMP 19-02-23
     last_date = data['date'].max()
     predict['predict_date'] = last_date
