@@ -4,9 +4,9 @@ steps:
       - gcloud
       - functions
       - deploy
-      - data
+      - csvtobq
       - --region=us-central1
-      - --source=./data/
+      - --source=./csvtobq/
       - --trigger-http
       - --runtime=python38
       - --memory=1GB
