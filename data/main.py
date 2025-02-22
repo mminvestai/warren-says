@@ -128,7 +128,7 @@ def data(request):
       if index == 0:
         data_temp = temp
       else:
-        data_temp = data_temp.append(temp)
+        data_temp = pd.concat([data_temp, pd.DataFrame([temp])]) #data_temp = data_temp.append(temp) MMP 22-02-2025
   
   data_temp['date'] = pd.to_datetime(data_temp['date'])
 
