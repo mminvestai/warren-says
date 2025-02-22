@@ -7,7 +7,7 @@ from dateutil import parser
 import csv
 from time import sleep
 from google.cloud import storage #pip install google-cloud-storage, pip install --upgrade google-cloud-storage, pip install --upgrade google-api-python-client
-
+#this comment is to force commit after GCP deprecated container registry
 def data(request):
   window = 250
   storage_client = storage.Client()
