@@ -18,6 +18,29 @@ def ingest(request):
     ticker_list = upside['ticker']
     window = 250 #MMP 25-02-23
 
+    def adj_close(ticker_symbol):
+        # Fetch raw stock data
+        stock = yf.Ticker(ticker_symbol)
+        df = stock.history(auto_adjust=False)
+    
+        # Get corporate actions
+        dividends = stock.dividends
+    
+        # Step 1: Compute Dividend Factor (cumulative product from future to past)
+        df["Dividend Factor"] = 1.0
+        cumulative_div = 1.0
+        for date in reversed(df.index):
+            if date in dividends:
+                close_price = df.loc[date, "Close"]
+                if close_price > 0:
+                    cumulative_div *= (close_price - dividends[date]) / close_price
+            df.loc[date, "Dividend Factor"] = cumulative_div  # Apply backwards
+    
+        # Final Adjusted Close Calculation (Only adjusting for dividends)
+        df["Adj Close"] = df["Close"] * df["Dividend Factor"]
+    
+        return df[['Open',	'High',	'Low', 'Close', 'Adj Close', 'Volume']].reset_index().sort_values(by=['Date']).rename(columns={'Date': 'date'})
+    
     def consolidate(df_daily, df_interval, interval):
         if df_interval.empty == True:
             df_interval.rename(columns = {interval: 'date'}, inplace = True)
@@ -65,7 +88,7 @@ def ingest(request):
         # Yahoo Finance Stock Prices
         error = 1
         while error == 1:
-            temp = yf.download(ticker)[['Open',	'High',	'Low', 'Close', 'Adj Close', 'Volume']].reset_index().sort_values(by=['Date']).rename(columns={'Date': 'date'})
+            temp = adj_close(ticker)
             if len(temp) == 0:
                 sleep(1)
             else:
