@@ -18,10 +18,10 @@ def ingest(request):
     ticker_list = upside['ticker']
     window = 250 #MMP 25-02-23
 
-    def adj_close(ticker_symbol):
+    def adj_close(ticker_symbol,start_date="1980-01-01"):
         # Fetch raw stock data
         stock = yf.Ticker(ticker_symbol)
-        df = stock.history(auto_adjust=False)
+        df = stock.history(start=start_date, auto_adjust=False)
     
         # Get corporate actions
         dividends = stock.dividends
